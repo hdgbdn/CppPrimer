@@ -49,6 +49,12 @@ void SharedOutput(shared_ptr<vector<int>> vi)
         cout << "shared ptr: " << i << endl;
 }
 
+bool b()
+{
+    int* p = new int;
+    return p;
+    // wrong! after returning value, no pointer are pointing to the allocated int, memory leaked
+}
 int main()
 {
     //vector<int> *vi1 = Create();
@@ -58,6 +64,11 @@ int main()
     auto vi2 = SharedCreate();
     SharedInput(vi2);
     SharedOutput(vi2);
+
+    int *q = new int(42), *r = new int(100);
+    r = q;      // memory leak
+    auto q2 = make_shared<int>(42), r2 = make_shared<int>(100);
+    r2 = q2;    // no leak, when r2 is pointed to new memory, the previous memory is freed
 
     return 0;
 }
