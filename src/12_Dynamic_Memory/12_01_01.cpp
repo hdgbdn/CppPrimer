@@ -60,12 +60,12 @@ void StrBlod::pop_back()
 int main()
 {
     // smart pointers are template
-    shared_ptr<string> p1;
+    shared_ptr<string> p1;  // use defaut construction
     shared_ptr<list<int>> p2;
 
     // if p1 is not empty and the string p1 pointed to is empty
     // assign a new string
-    // *p1 is already a stirng?
+    // *p1 is already a stirng? defaut construction
     if(p1 && p1->empty())
         *p1 = "hi";
 
