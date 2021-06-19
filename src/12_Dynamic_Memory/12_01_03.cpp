@@ -94,5 +94,18 @@ int main()
         // summary: after using shared_ptr, don't give it back to normal pointer
     }
 
+    // reset and unique
+    {
+        shared_ptr<int> p(new int());
+        // p = new int(1024);      // error, explicit
+        p.reset(new int(1024));     // now p is point to a new object
+
+        shared_ptr<int> q(p);
+        if(!p.unique())
+            p.reset(new int(*q));
+        *p += 10;
+        cout << "p is " << *p << " q is " << *q << endl;
+    }
+
     return 0;
 }
