@@ -5,4 +5,5 @@ add_executable("12_01_02_excrise" "12_01_02_excrise.cpp")
 add_executable("12_01_03" "12_01_03.cpp")
 add_executable("12_01_03_excrise" "12_01_03_excrise.cpp")
 add_executable("12_01_04" "12_01_04.cpp")
+add_executable("12_01_04_excrise.cpp" "12_01_04_excrise.cpp")
 
