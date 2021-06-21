@@ -47,7 +47,7 @@ int main()
         };
         
         // 2. or return a copy of local variable
-        auto clone = [](int p)->unique_ptr<int>
+        auto clone2 = [](int p)->unique_ptr<int>
         {
             unique_ptr<int> ret(new int(p));
             return ret;
