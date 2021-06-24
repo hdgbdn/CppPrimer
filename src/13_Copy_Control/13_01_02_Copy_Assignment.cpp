@@ -26,8 +26,8 @@ int main()
         };
 
         Foo a, b;
-        Foo c(a);
-        b = a;
+        Foo c(a);       // copy constructor
+        b = a;          // copy assignment
         cout << b.val << endl;
     }
 
