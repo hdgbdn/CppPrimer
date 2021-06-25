@@ -42,7 +42,7 @@ int main()
         PrivateCopy& operator=(const PrivateCopy&);
     public:
         PrivateCopy() = default;
-        ~PrivateCopy();
+        ~PrivateCopy() = default;
     };
     PrivateCopy pc1;
     //PrivateCopy pc2(pc1);   // "PrivateCopy::PrivateCopy(const PrivateCopy &)" (declared at line 41) is inaccessible
