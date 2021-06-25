@@ -34,6 +34,7 @@ StrBlob& StrBlob::operator=(const StrBlob& rhs)
 {
     shared_ptr<vector<string>> copydata = make_shared<vector<string>>(*rhs.data);
     data = copydata;
+    return *this;
 }
 
 StrBlob::StrBlob() : data(make_shared<vector<string>>()) {}
