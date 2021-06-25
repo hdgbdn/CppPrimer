@@ -51,6 +51,56 @@ HasPtr::~HasPtr()
     }
 }
 
+class TreeNode{
+public:
+    TreeNode(string s = string());
+    TreeNode(const TreeNode&);
+    TreeNode& operator=(const TreeNode&);
+    ~TreeNode();
+private:
+    string      value;
+    int         count;
+    TreeNode*   left;
+    TreeNode*   right;
+};
+
+TreeNode::TreeNode(string s): value(s), count(0), left(nullptr), right(nullptr){ }
+
+TreeNode::TreeNode(const TreeNode& node): value(node.value), count(node.count) {
+    if(node.left)
+        left = new TreeNode(*(node.left));
+    if(node.right)
+        right = new TreeNode(*(node.right));
+}
+
+TreeNode& TreeNode::operator=(const TreeNode& node){
+    value = node.value;
+    count = node.count;
+    delete left;
+    delete right;
+    left = new TreeNode(*node.left);
+    right = new TreeNode(*node.right);
+};
+
+TreeNode::~TreeNode(){
+    delete left;
+    delete right;
+}
+
+class BinStrTree{
+    BinStrTree();
+    BinStrTree(const BinStrTree&);
+    BinStrTree& operator=(const BinStrTree&);
+private:
+    TreeNode *root;
+};
+
+BinStrTree::BinStrTree(): root(nullptr){ }
+
+BinStrTree::BinStrTree(const BinStrTree& bt): root(new TreeNode(*bt.root)){
+    
+}
+
 int main()
 {
     HasPtr p1("hello");
