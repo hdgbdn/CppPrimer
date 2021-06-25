@@ -6,10 +6,12 @@
 using namespace std;
 
 class HasPtr{
+    friend void swap(HasPtr&, HasPtr&);
 public:
     HasPtr(const string &s = string());
     HasPtr(const HasPtr&);
     HasPtr& operator=(const HasPtr&);
+    HasPtr& operator=(HasPtr);
     ~HasPtr();
     void Print();
 private:
@@ -42,6 +44,12 @@ HasPtr& HasPtr::operator=(const HasPtr& rhs)
     return *this;
 }
 
+// copy and swap
+HasPtr& HasPtr::operator=(HasPtr rhs){
+    swap(*this, rhs);
+    return *this;
+}
+
 HasPtr::~HasPtr()
 {
     if(--*pcount == 0){
@@ -51,65 +59,35 @@ HasPtr::~HasPtr()
     }
 }
 
-class TreeNode{
-public:
-    TreeNode(string s = string());
-    TreeNode(const TreeNode&);
-    TreeNode& operator=(const TreeNode&);
-    ~TreeNode();
-private:
-    string      value;
-    int         count;
-    TreeNode*   left;
-    TreeNode*   right;
-};
-
-TreeNode::TreeNode(string s): value(s), count(0), left(nullptr), right(nullptr){ }
-
-TreeNode::TreeNode(const TreeNode& node): value(node.value), count(node.count) {
-    if(node.left)
-        left = new TreeNode(*(node.left));
-    if(node.right)
-        right = new TreeNode(*(node.right));
-}
-
-TreeNode& TreeNode::operator=(const TreeNode& node){
-    value = node.value;
-    count = node.count;
-    delete left;
-    delete right;
-    left = new TreeNode(*node.left);
-    right = new TreeNode(*node.right);
-    return *this;
-};
-
-TreeNode::~TreeNode(){
-    delete left;
-    delete right;
-}
-
-class BinStrTree{
-    BinStrTree();
-    BinStrTree(const BinStrTree&);
-    BinStrTree& operator=(const BinStrTree&);
-private:
-    TreeNode *root;
-};
-
-BinStrTree::BinStrTree(): root(nullptr){ }
-
-BinStrTree::BinStrTree(const BinStrTree& bt): root(new TreeNode(*bt.root)){
-    
+inline
+void swap(HasPtr &lhs, HasPtr &rhs)
+{
+    using std::swap;
+    // why "using std::swap"?
+    // because compiler first to find our version of swap, if don't find, then use std::swap;
+    swap(lhs.ps, rhs.ps);
+    swap(lhs.i, rhs.i);
+    swap(lhs.pcount, rhs.pcount);
 }
 
 int main()
 {
-    HasPtr p1("hello");
-    HasPtr p2(p1);
-    {
-        HasPtr p3("p3");
-    }
-    HasPtr p4("p4");
-    p4 = p2;
+    // why define our own swap?
+    // because the general swap it:
+    // A temp;
+    // HasPtr temp = a;
+    // a = b;
+    // b = temp;
+    // use copy constructor 1 time, copy assignment 2 times
+    // but actually, we just need to swap some pointer
+
+    // copy and swap, see the non reference version of operator =
+    // HasPtr& HasPtr::operator=(HasPtr rhs){
+    //  swap(*this, rhs);
+    //  return *this;
+    // }
+    // because rhs is a copy of the origin one, so the swap operation won't affect the origin one
+    // after swaping, the rhs's pointed memroy now is pointed by *this's pointer, and rhs will be destoried
+    // after leaving function's scope
     return 0;
 }
