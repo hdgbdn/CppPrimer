@@ -152,4 +152,11 @@ int main()
 	s2.Print();
 	s2.pop_back();
 	s2.Print();
+
+    string realstr;
+    cout << realstr << endl;
+    realstr.push_back('\0');
+    cout << realstr << endl;
+    realstr.push_back('a');
+    cout << realstr << endl;
 }
