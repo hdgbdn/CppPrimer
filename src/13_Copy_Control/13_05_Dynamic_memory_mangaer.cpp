@@ -10,15 +10,15 @@ using namespace std;
 
 class StrVec{
 public:
-    StrVec(): elements(nullptr), cap(nullptr), {}
+    StrVec(): elements(nullptr), cap(nullptr) {}
     StrVec(const StrVec&);
     StrVec& operator=(const StrVec&);
     ~StrVec();
     void push_back(const string&);
     size_t size() const { return first_free - elements; }
     size_t capacity() const { return cap - elements; }
-    string* begin() const { return elements }
-    string* end() const { return first_free}
+    string* begin() const { return elements; }
+    string* end() const { return first_free; }
 private:
     static allocator<string> alloc;
     void chk_n_alloc() { if(size() == capacity()) reallocate(); }
@@ -40,7 +40,7 @@ void StrVec::push_back(const string& s)
 pair<string*, string*> StrVec::alloc_n_copy(const string* b, const string* e)
 {
     auto data = alloc.allocate(e - b);
-    return {data, uninitialized_copy(b, e, data)}
+    return {data, uninitialized_copy(b, e, data)};
 }
 
 void StrVec::free()
@@ -59,13 +59,13 @@ StrVec::StrVec(const StrVec& s)
     return;
 }
 
-StrVec& StrVec::StrVec(const StrVec& rhs)
+StrVec& StrVec::operator=(const StrVec& rhs)
 {
     auto data = alloc_n_copy(rhs.begin(), rhs.end());
     free();
     elements = data.first;
     first_free = cap = data.second;
-    return;
+    return *this;
 }
 
 // very importand: introducion std::move
@@ -86,6 +86,8 @@ void StrVec::reallocate()
     first_free = dest;
     cap = elements + newcapacity;
 }
+
+allocator<string>  StrVec::alloc;
 
 int main()
 {
