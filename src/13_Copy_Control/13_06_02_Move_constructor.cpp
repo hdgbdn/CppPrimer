@@ -322,5 +322,28 @@ int main()
         m2 = std::move(m1);
     }
 
+    // move iterator
+    {
+        /*
+        void StrVec::reallocate()
+        {
+            auto newcapacity = size() ? 2 * size() : 1;
+            auto newdata = alloc.allocate(newcapacity);
+            auto dest = newdata;
+            auto elem = elements;
+            for (size_t i = 0; i != size(); ++i)
+                alloc.construct(dest++, std::move(*elem++));
+            free();
+            elements = newdata;
+            first_free = dest;
+            cap = elements + newcapacity;
+        }
+        */
+       // if use uninitialized_copy to move range element
+       // auto first = alloc.allocate(newcapacity);
+       // atuo last = uninitialized_copy()make_move_iterator(begin()), make_move_iterator(end()), first);
+       // the iterator given is a move iterator, returns a rvalue reference
+    }
+
     return 0;
 }
