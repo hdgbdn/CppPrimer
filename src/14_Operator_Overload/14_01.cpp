@@ -26,12 +26,12 @@ int main()
 
     // 2. generally, we shouldn't override the ',' '&' '&&' and '||'
     // for ',' and '&', it's have been widely used
-    // '&&' and '||', the overrided version will not have logically shortcut
+    // '&&' and '||', the overrided version will lose logically shortcut
 
     // 3. member or non-member?
     // '=' '[]' '()' '->' should be member, because it use the object's data member
     // '+=' '-=' ... can be member, but also can be non-member
-    // '++' '--' '*', changes objects' themselves, should be member
+    // '++' '--' '*', changes objects' datab member, should be member
     // lhs and rhs can swap: '+' '-' '==' '!=' should be non-member function
 
 
