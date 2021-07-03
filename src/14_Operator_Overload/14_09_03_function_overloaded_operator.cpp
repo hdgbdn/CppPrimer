@@ -8,7 +8,7 @@ using namespace std;
 class SmallInt{
     friend SmallInt operator+(const SmallInt&, const SmallInt&);
 public:
-    SmallInt(int = 0);
+    SmallInt(int i = 0): val(i) {};
     operator int() const { return val;}
 private:
     size_t val;
