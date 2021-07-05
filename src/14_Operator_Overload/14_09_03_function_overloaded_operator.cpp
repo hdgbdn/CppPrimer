@@ -25,5 +25,6 @@ int main()
     SmallInt s1, s2;
     SmallInt s3 = s1 + s2;
     // int i = s3 + 0;     // ambiguity: convert s3 to int, or s3 + SmallInt(0), then convert to int?
+    // the build-in highest order is conversion between build-in types, not user type to build-in or build-in to user type
     return 0;
 }

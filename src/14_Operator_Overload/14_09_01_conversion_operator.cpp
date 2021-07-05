@@ -39,11 +39,12 @@ int main()
     // a special member function
     SmallInt si;
     si = 4;     // implicit covert 4 to SmallInt
-    si + 3;     // convert si to int
-    SmallInt sd = 3.14; // 3.14 convert to int 3
+    si + 3;     // convert si to int, why not convert 3 to SmallInt? Because the build-in order is higher than user's
+    SmallInt sd = 3.14; // 3.14 convert to int 3 as the parameter of constructor
     cout << "si + 3.14: is" << si + 3.14;          // convert si to int, and to double
 
     // exception
+    // operator "<<" shouldn't be used in a istream, but 
     // cin << i;        if istream can convert to bool, then the coverted bool will be promted as int, then becames 1 << i
     // explicit conversion operator:
     ExpilicSmallInt esi = 3;

@@ -83,6 +83,7 @@ int main()
 
     long lg(0);
     C c2(lg);               // it works? but book said compiler will confuse about C::C(int) or C::C(double)
+    // two constructor: C(int = 0) {}; C(double) {};, so the compiler don't konw which is better: long->int or long->double
 
     // here are some tips about designing type converstion
     // first, define one way conversation, like if define A convert to B, then don't define B convert to A
@@ -90,10 +91,11 @@ int main()
 
     // overloaded function and conversation constructor
     mainip2(10);        // compile passed? MSVC ? "class E version"
+    // two ways: 10->D, then the const D& version be called, or 10->E, then then const E& version be called;
 
     // overloaded function and user-defined type conversation
     // mainip3(10);        // error: more than one instance of overloaded function "mainip3" matches the argument list;
-    // although there are an exact conversion from E(int 10), but if user defined available conversion is more than one,
+    // although there are an exact matched conversion from E(int 10), but if user defined available conversion is more than one,
     // there still be ambiguity
     return 0;
 }
