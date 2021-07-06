@@ -48,7 +48,7 @@ double Bulk_quote::net_price(size_t cnt) const
         return cnt * price;
 }
 
-int smain()
+int main()
 {
     // an abstract base class means we don't want to create any objects from this class
     // it cantains abstract members that only can be derived
