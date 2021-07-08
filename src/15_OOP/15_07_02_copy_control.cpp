@@ -38,7 +38,7 @@ int main()
     // but the base class's (move constructor/assignment) is deleted or inaccessible, then the function will be deleted, because can't move base part
     // same, if base destructor is deleted or inaccessible, then the derived move constructor is deleted
 
-    D d;
+    // D d;
     // D d2(d);                // error C2280: 'D::D(const D &)': attempting to reference a deleted function
     // D d3(std::move(d));     // error C2280: 'D::D(const D &)': attempting to reference a deleted function
     // why D d3(std::move(d)) don't work? because we defined a deleted copy constructor, so compiler will not synthesize move constructor
