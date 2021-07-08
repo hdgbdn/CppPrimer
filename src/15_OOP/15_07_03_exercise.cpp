@@ -159,6 +159,8 @@ Bulk_quote func(){
 
 int main()
 {
+    // what I learned is that
+    // A named argument isn't treated as a rvalue reference, you have to move it.
     Bulk_quote bq;
     cout << "using move construction" << endl;
     Bulk_quote bq2(std::move(bq));
