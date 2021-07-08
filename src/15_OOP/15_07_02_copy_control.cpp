@@ -49,5 +49,9 @@ int main()
     // so if we want dervied classes to have move operation, we have to define our own, and as 13_06_02 mentioned, 
     // if class defined a move constructor or move assignment operator, the the sythesized cpoy constructor and copy assignment operator
     // will be defined as deleted, so we also have to define the copy operation aswell
+
+    // summary: only no copy operations defined, then compiler will try to synthesized move operations.
+    // otherwise your have to defined then by yourself.
+    // I think it means that copy operations and move operations act alike, and compiler perfers copy operations
     return 0;
 }
