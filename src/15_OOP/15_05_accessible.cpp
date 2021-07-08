@@ -93,14 +93,14 @@ int main()
     // can access by derived class, but can't be accessed by other user;
     // for derived class and friend, it works just like a public
 
-    // if dervided member or friend want to access base's protected member, they must use base object
     // see the Base and Sneaky above:
     // if a derived class's friend can access a base object's protected member, then if we want to access a class's protected member
     // we just simply derived a class and add a friend to the derived class.
     // so a derived class's friend can only access the derived objects's protected base member, not a base object's protected base member.
+    // and a dervied's friend is not the derived's base's friend
 
     // public private and protected derivation
-    // first, derive access specifiers don't affect derived or friend's access of the base member 
+    // first, derive access specifiers don't affect derived or friend's accessibility of the base member 
     // but for the derived classes' user:
     // public: same as base class
     // protected: all member inherited from base will become protected
@@ -117,6 +117,7 @@ int main()
     // see Derived_from_Public, Derived_from_Private, Derived_from_Private above
 
     // derived-to-base
+    // !!!!!!!!!!!!!!importance, a base pointer can't point to a dervied object, if the derived class hide the base part
     // only valid for public inheritance
     Pub_Derv pubD;
     Priv_Derv priD;

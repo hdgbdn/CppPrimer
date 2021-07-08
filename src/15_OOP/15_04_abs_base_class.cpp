@@ -57,8 +57,7 @@ int main()
 
     // pure virtual function
     // can only be decalred
-    // a class has (or derived but not overload) a pure vitual function
-    // is abstract base class
+    // a class has (or derived but not overload) a pure vitual function is abstract base class
     // Disc_quote dc;       // object of abstract class type "Disc_quote" is not allowed: -- function "Disc_quote::net_price" is a pure virtual function
 
     // although bulk_quote don't declar it's own member, it still need to construct it's derived members, by calling it's direct base's constructor
