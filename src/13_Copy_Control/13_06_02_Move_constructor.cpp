@@ -257,8 +257,11 @@ int main()
     X x, x2 = std::move(x);
     hasX hx, hx2 = std::move(hx);
 
-    // we can't define move(constructor or assignment) to a deleted function, but if we ask compiler to 
+    // we can't define move(constructor or assignment) as a deleted function, but if we ask compiler to 
     // generate =default version move, and no all member can be move, than compiler will define move as deleted
+
+    // if class defined a move constructor or move assignment operator, the the sythesized copy constructor and copy assignment operator
+    // will be defined as deleted
 
     // move rvalue, copy lvalue
     StrVec v1, v2;
