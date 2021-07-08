@@ -24,5 +24,8 @@ int main()
     // Dervied::~Derived()
     // Base::~Base()
     // looks like the base part's destructor is automatically called
+
+    // if class defined it's own copy constructor copy assignment or destructor(even defined deleted!!!!!!!!!!)
+    // compiler will not synthesize move constructor
     return 0;
 }
