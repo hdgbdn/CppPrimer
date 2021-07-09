@@ -33,7 +33,7 @@ int main()
 
     // synthesized copy-assignment operator
     {
-        
+        // if a class don't define the user's copy-assignment operator, the compiler will synthesize one for it
     }
     return 0;
 }

@@ -24,7 +24,7 @@ int main()
         // synthesized copy constructor will copy every non static member into the new object
 
         // for class type, complier use it's copy constructor
-        // for base type, just copy
+        // for build-in type, just copy
         // for array, complier copies every element of it
 
         class Foo{
@@ -47,7 +47,7 @@ int main()
         string null_book = "9-9-9";   // copy initialization
         string ninies = string(100, '9');   // copy initialization
 
-        auto foo = [](string s)->string
+        auto foo = [](string s)
         {
             cout << "non reference version: parameter string address is " << &s << endl;
             string ret = string(s);
@@ -65,6 +65,11 @@ int main()
         // non reference version: parameter string address is 000000FA00B4F858
         // non reference version: returned string address is 000000FA00B4F218
         cout << "the final string address is " << &dots1 << endl;   // the final string address is 000000FA00B4F818
+
+        // so by calling `string foo(string)`, there are 3 copy construction happends:
+        // 1: copy constructing the foo's parameter
+        // 2: copy constructing inside foo: constructing ret by arguments
+        // 2: the rvalue `ret`, copy into the lvalue `dots1`
     }
 
     // why copy constructor use reference parameter
@@ -74,7 +79,8 @@ int main()
 
     // limitation
     {
-        // vector's copy constructor is explicit
+        // vector's copy constructor is explicit, so we must use a vector object as parameter
+        // different from the direct constructor
         vector<int> v1(10);     // direct initialize accpet int
         //vector<int> v2 = 10;    // no suitable constructor exists to convert from "int" to "std::vector<int, std::allocator<int>>
         vector<int> v3 = vector<int>(10);   // correct

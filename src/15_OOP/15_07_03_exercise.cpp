@@ -167,7 +167,13 @@ int main()
     cout << "using move assignment" << endl;
     bq2 = func();
     cout << "Exiting" << endl;
-    // if want to use move operation, should use std::move
-    // see the dervide classes's move operations above
+    // if a variable has a name, then it is a lvalue!!!!!!!!!!!!!!
+
+    // Note above that the argument x is treated as an lvalue internal to the move functions, 
+    // even though it is declared as an rvalue reference parameter. 
+    // That's why it is necessary to say move(x) instead of just x when passing down to the base class. 
+    // This is a key safety feature of move semantics designed to prevent accidently moving twice from some named variable. 
+    // All moves occur only from rvalues, or with an explicit cast to rvalue such as using std::move. 
+    // If you have a name for the variable, it is an lvalue.
     return 0;
 }
