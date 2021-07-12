@@ -24,4 +24,5 @@ int main()
     // user just need to konw the Query as interface, so Query contains a pointer to Query_base
     // so there are three WordQuery objects, and the & operator bind fiery and bird into a AndQuery object
     // and the | operator bind the AndQuery object and the WordQuery object into a OrQuery object
+    return 0;
 }

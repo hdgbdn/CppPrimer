@@ -10,3 +10,7 @@
 // 4 WordQuery, 2 AndQuery, 1 OrQuery
 
 // ()
+int main()
+{
+    return 0;
+}
