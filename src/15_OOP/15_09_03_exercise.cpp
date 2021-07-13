@@ -21,7 +21,7 @@ private:
 
 class WordQuery : public Query_base {
     friend class Query;
-    WordQuery(const string& s) : query_word(s) {}
+    WordQuery(const string& s) : query_word(s) { cout << "WordQuery construction: " << s << endl;}
     string rep() const override
     { return query_word; }
     string query_word;
@@ -36,11 +36,11 @@ public:
     string rep() const
     { return q->rep(); }
 private:
-    Query(shared_ptr<Query_base> query): q(query) {}
+    Query(shared_ptr<Query_base> query): q(query) { cout << "Query construction by Query_base: " << endl; }
     shared_ptr<Query_base> q;
 };
 
-Query::Query(const string& s): q(new WordQuery(s)) {}
+Query::Query(const string& s): q(new WordQuery(s)) { cout << "Query construction by string: " << s << endl; }
 
 class NotQuery: public Query_base{
     friend Query operator~(const Query&);
@@ -65,7 +65,7 @@ protected:
 
 class AndQuery: public BinaryQuery{
     friend Query operator&(const Query&, const Query&);
-    AndQuery(const Query& left, const Query& right): BinaryQuery(left, right, "&") {}
+    AndQuery(const Query& left, const Query& right): BinaryQuery(left, right, "&") { cout << "AndQuery construction" << endl; }
 };
 inline
 Query operator&(const Query& lhs, const Query& rhs){
@@ -74,7 +74,7 @@ Query operator&(const Query& lhs, const Query& rhs){
 
 class OrQuery: public BinaryQuery{
     friend Query operator|(const Query&, const Query&);
-    OrQuery(const Query& left, const Query& right): BinaryQuery(left, right, "|") {}
+    OrQuery(const Query& left, const Query& right): BinaryQuery(left, right, "|") { cout << "OrQuery construction" << endl; }
 };
 inline
 Query operator|(const Query& lhs, const Query& rhs){
