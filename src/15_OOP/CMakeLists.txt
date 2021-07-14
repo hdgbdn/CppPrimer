@@ -4,3 +4,5 @@ foreach(SOURCES_FILE ${SOURCES_FILES})
     get_filename_component(SOURCES_FILE_NAME ${SOURCES_FILE} NAME_WE)
     add_executable(${SOURCES_FILE_NAME} "${SOURCES_FILE}")
 endforeach()
+
+add_subdirectory("Query")
