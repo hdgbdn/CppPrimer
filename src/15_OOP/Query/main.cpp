@@ -24,7 +24,7 @@ int main()
     eval(q2, t);
     Query q3 = Query("Alice") & Query("long");
     eval(q3, t);
-    Query q4 = Query("Alice") | Query("is");
+    Query q4 = Query("Alice") | (Query("is") & Query("there"));
     eval(q4, t);
     return 0;
 }

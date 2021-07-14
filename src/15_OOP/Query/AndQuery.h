@@ -25,6 +25,7 @@ inline QueryResult AndQuery::eval(const TextQuery& t) const
 	auto lp = lbeg, rp = rbeg;
 	while(lp != lend || rp != rend)
 	{
+		if (lp == lend || rp == rend) break;
 		if (*lp == *rp)
 		{
 			ret->insert(*lp);
