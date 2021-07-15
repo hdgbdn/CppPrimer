@@ -39,6 +39,9 @@ void StrBlod::check(size_type i, const string &msg) const
         throw out_of_range(msg);
 }
 
+// what to return if there are nothing to return? since the return type is reference?
+// answer: throw out_of_range
+
 string& StrBlod::front()
 {
     check(0, "front on empty StrBlob");
@@ -59,40 +62,73 @@ void StrBlod::pop_back()
 
 int main()
 {
-    // smart pointers are template
-    shared_ptr<string> p1;  // use defaut construction
-    shared_ptr<list<int>> p2;
+	{
+		// smart pointers are template
+		shared_ptr<string> p1;  // use defaut construction
+		shared_ptr<list<int>> p2;
 
-    // if p1 is not empty and the string p1 pointed to is empty
-    // assign a new string
-    // *p1 is already a stirng? defaut construction
-    if(p1 && p1->empty())
-        *p1 = "hi";
+		// if p1 is not empty and the string p1 pointed to is empty
+		// assign a new string
+		// since p1 is a empty pointer, the "p1" if false
+		if(p1 && p1->empty())
+		{
+			cout << "p1 is empty" << endl;
+			*p1 = "hi";
+		}
 
-    shared_ptr<int> p3 = make_shared<int>(42);
-    shared_ptr<string> p4 = make_shared<string>(10, '9');
-    shared_ptr<int> p5 = make_shared<int>(); //value-initialized
+		// but we can point p1 to an empty string
+		p1 = make_shared<string>();
+		if (p1 && p1->empty())
+		{
+			cout << "p1 is empty after point to a make_shared" << endl;
+			*p1 = "hi";
+		}
+	}
 
-    auto p6 = make_shared<vector<string>>();
+	// make_shared
+	// works like: construct an object, then return the shared_ptr
+	// note: if shared_ptr<base> p = make_shared<base>(derivedobj);
+	// then you will only get a p point to a base obj, not a derived obj, because make_shared constructs a base obj.
+	{
+        shared_ptr<int> p3 = make_shared<int>(42);
+        shared_ptr<string> p4 = make_shared<string>(10, '9');
+        shared_ptr<int> p5 = make_shared<int>(); //value-initialized
 
-    auto p = make_shared<int>(42);
-    auto q(p);
+        auto p6 = make_shared<vector<string>>();
 
-    auto r = make_shared<int>(42);
-    r = q;
+        auto p = make_shared<int>(42);
+        auto q(p);
 
-    auto p7 = factory("test");
-    cout << "the use count of p7 is " << p7.use_count() << endl;
-    // the use count of p7 is 1
+        auto r = make_shared<int>(42);
+        r = q;
+	}
 
-    vector<string> v1;
-    {
-        vector<string> v2 = {"a", "an", "the"};
-        v1 = v2;
-    }
-    cout << "v1 is a copy of v2" << endl;
-    for(auto v : v1)
-        cout << "v1: " << v << endl;
+    // when use count == 0, shared_ptr will automatically free memory
+	{
+        auto p7 = factory("test");
+        cout << "the use count of p7 is " << p7.use_count() << endl;
+        // the use count of p7 is 1
+		// after leaving the scope, p7 will be free
+	}
+
+	// why use dynamic allocate
+	// 1: don't know the number of objects
+	// 2: don't know the exact type(base derive)
+	// 3: shared data
+
+	{
+        vector<string> v1;
+        {
+            vector<string> v2 = { "a", "an", "the" };
+            v1 = v2;
+        }
+        cout << "v1 is a copy of v2" << endl;
+        for (auto v : v1)
+            cout << "v1: " << v << endl;
+	}
+
+    // vector owns the elements, it means the element in vector is separated from the origin one
+	// but if we want to share the same elements between objects?
 
     // StrBlob
     StrBlod blod_a({"hi, hello"});
