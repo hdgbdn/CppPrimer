@@ -20,7 +20,6 @@ int main()
 			auto last = iVec.end();
 			auto val3 = *(--last);		// end() is pointed to the element behind the last element
 			auto val4 = iVec.back();
-
 		}
 	}
 	{
