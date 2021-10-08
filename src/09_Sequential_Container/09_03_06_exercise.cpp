@@ -62,5 +62,22 @@ int main()
 		}
 		print("9.3.3:{} \n", ivec);
 	}
+	{
+		// 9.4
+		// the program's intense is to duplicate the odd value
+		// but it became a infinity loop because iter will always point to the odd element
+		vector<int> vi{ 1,2,3,4,5 };
+		auto iter = vi.begin();
+		while(iter!=vi.end())
+		{
+			if (*iter % 2)
+			{
+				iter = vi.insert(iter, *iter);
+				++iter;
+			}
+			++iter;
+		}
+		print("9.3.4:{} \n", vi);
+	}
 	return 0;
 }
