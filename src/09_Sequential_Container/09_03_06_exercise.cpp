@@ -63,7 +63,7 @@ int main()
 		print("9.3.3:{} \n", ivec);
 	}
 	{
-		// 9.4
+		// 9.34
 		// the program's intense is to duplicate the odd value
 		// but it became a infinity loop because iter will always point to the odd element
 		vector<int> vi{ 1,2,3,4,5 };
